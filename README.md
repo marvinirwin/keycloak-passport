@@ -42,7 +42,10 @@ passport.use(
       realm: process.env.KEYCLOAK_REALM,
       clientID: process.env.KEYCLOAK_CLIENT_ID,
       clientSecret: process.env.KEYCLOAK_CLIENT_SECRET,
-      callbackURL: `/api${AUTH_KEYCLOAK_CALLBACK}`
+      callbackURL: `/api${AUTH_KEYCLOAK_CALLBACK}`,
+      authorizationURL: `${process.env.KEYCLOAK_HOST}/realms/${process.env.KEYCLOAK_REALM}/protocol/openid-connect/auth`,
+      tokenURL: `${process.env.KEYCLOAK_HOST}/realms/${process.env.KEYCLOAK_REALM}/protocol/openid-connect/token`,
+      userInfoURL: `${process.env.KEYCLOAK_HOST}/realms/${process.env.KEYCLOAK_REALM}/protocol/openid-connect/userinfo`,
     },
     (accessToken, refreshToken, profile, done) => {
       // This is called after a successful authentication has been completed
